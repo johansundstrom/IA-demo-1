@@ -1,7 +1,7 @@
 async function fetchWeatherData() {
     try {
-        const lon = 18.05368; // Longitude for Stockholm
-        const lat = 59.32243; // Latitude for Stockholm
+        const lon = 18.05368; // Longitude for Vallentuna
+        const lat = 59.32243; // Latitude for Vallentuna
         const apiUrl = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`;
 
         const response = await fetch(apiUrl);
