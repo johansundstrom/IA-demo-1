@@ -1,0 +1,19 @@
+/* Modern Style for IA-dem-2 */
+
+#body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;  
+    margin: 1rem;
+    color: #333;
+}
+
+#header {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;  
+    color: #666;
+    line-height: 1.6;
+}
+
+#weather {
+    margin-top: 20px;
+}
