@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .weather {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Data</h1>
+    <div id="weather" class="weather">
+        Loading weather data...
+    </div>
+
+    <script>
+        async function fetchWeatherData() {
+            try {
+                const apiUrl = 'https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/18.0632/lat/59.3346/data.json';
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch weather data');
+                }
+                const data = await response.json();
+
+                // Extract relevant data (adjust based on SMHI API structure)
+                const temperature = data.timeSeries[0].parameters.find(p => p.name === 't').values[0];
+                const wind = data.timeSeries[0].parameters.find(p => p.name === 'ws').values[0];
+                const pressure = data.timeSeries[0].parameters.find(p => p.name === 'msl').values[0];
+
+                // Display data on the webpage
+                document.getElementById('weather').innerHTML = `
+                    <p><strong>Temperature:</strong> ${temperature} °C</p>
+                    <p><strong>Wind Speed:</strong> ${wind} m/s</p>
+                    <p><strong>Pressure:</strong> ${pressure} hPa</p>
+                `;
+            } catch (error) {
+                document.getElementById('weather').textContent = 'Error loading weather data.';
+                console.error(error);
+            }
+        }
+
+        // Call the function to fetch and display weather data
+        fetchWeatherData();
+    </script>
+</body>
+</html>
